@@ -1,1 +1,0 @@
-# Projeto-Backend-Sistema-de-vendas-de-Tickets
