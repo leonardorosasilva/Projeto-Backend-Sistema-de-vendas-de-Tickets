@@ -7,7 +7,7 @@ import com.example.ticketmaster.model.Role;
 import com.example.ticketmaster.model.User;
 import com.example.ticketmaster.repository.RoleRepository;
 import com.example.ticketmaster.repository.UserRepository;
-import br.com.ticketmaster.security.JwtTokenProvider;
+import com.example.ticketmaster.security.JwtTokenProvider;
 import com.example.ticketmaster.exception.BusinessException;
 
 import org.springframework.security.authentication.AuthenticationManager;
