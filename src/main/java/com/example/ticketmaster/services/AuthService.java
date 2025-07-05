@@ -9,6 +9,7 @@ import com.example.ticketmaster.repository.RoleRepository;
 import com.example.ticketmaster.repository.UserRepository;
 import com.example.ticketmaster.security.JwtTokenProvider;
 import com.example.ticketmaster.exception.BusinessException;
+import com.example.ticketmaster.model.User;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -43,11 +44,11 @@ public class AuthService {
     }
 
     @Transactional
-    public AuthResponseDTO registerUser(RegisterRequestDTO registerRequest) {*+
-        if (userRepository.existsByUsername(registerRequest.getUsername())) {
+    public AuthResponseDTO registerUser(RegisterRequestDTO registerRequest) {
+        if (userRepository.findByUsername(registerRequest.getUsername())) {
             throw new BusinessException("Nome de usuário já está em uso!");
         }
-        if (userRepository.existsByEmail(registerRequest.getEmail())) {
+        if (userRepository.findByEmail(registerRequest.getEmail())) {
             throw new BusinessException("Email já está em uso!");
         }
 
