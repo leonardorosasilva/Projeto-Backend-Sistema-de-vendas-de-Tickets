@@ -1,9 +1,7 @@
-package br.com.ticketmaster.repository;
+package com.example.ticketmaster.repository;
 
-import br.com.ticketmaster.model.Event;
-import br.com.ticketmaster.model.User;
-import jdk.jfr.Category;
-import org.springframework.beans.factory.ListableBeanFactory;
+import com.example.ticketmaster.model.Event;
+import com.example.ticketmaster.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

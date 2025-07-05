@@ -1,4 +1,4 @@
-package br.com.ticketmaster.model;
+package com.example.ticketmaster.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

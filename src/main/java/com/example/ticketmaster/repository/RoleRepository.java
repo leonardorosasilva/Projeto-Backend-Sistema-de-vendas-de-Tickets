@@ -1,6 +1,6 @@
-package br.com.ticketmaster.repository;
+package com.example.ticketmaster.repository;
 
-import br.com.ticketmaster.model.Role;
+import com.example.ticketmaster.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

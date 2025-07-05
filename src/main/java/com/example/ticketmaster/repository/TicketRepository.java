@@ -1,7 +1,7 @@
-package br.com.ticketmaster.repository;
+package com.example.ticketmaster.repository;
 
-import br.com.ticketmaster.model.Event;
-import br.com.ticketmaster.model.Ticket;
+import com.example.ticketmaster.model.Event;
+import com.example.ticketmaster.model.Ticket;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

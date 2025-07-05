@@ -8,7 +8,7 @@ import com.example.ticketmaster.exception.BusinessException;
 import com.example.ticketmaster.exception.ResourceNotFoundException;
 import com.example.ticketmaster.model.*;
 import com.example.ticketmaster.repository.PurchaseRepository;
-import com.example.ticketmaster.repository.PurchasedTicketRepository;
+import com.example.ticketmaster.repository.PurchaseTicketRepository;
 import com.example.ticketmaster.repository.TicketRepository;
 import com.example.ticketmaster.repository.UserRepository;
 import org.modelmapper.ModelMapper;
@@ -26,18 +26,17 @@ import java.util.stream.Collectors;
 public class PurchaseService {
 
     private final PurchaseRepository purchaseRepository;
-    private final PurchasedTicketRepository purchasedTicketRepository;
+    private final PurchaseTicketRepository purchaseTicketRepository;
     private final UserRepository userRepository;
     private final TicketRepository ticketRepository;
     private final ModelMapper modelMapper;
 
     public PurchaseService(PurchaseRepository purchaseRepository,
-                           PurchasedTicketRepository purchasedTicketRepository,
+                           PurchaseTicketRepository purchaseTicketRepository,
                            UserRepository userRepository,
-                           TicketRepository ticketRepository,
-                           ModelMapper modelMapper) {
+                           TicketRepository ticketRepository) {
         this.purchaseRepository = purchaseRepository;
-        this.purchasedTicketRepository = purchasedTicketRepository;
+        this.purchaseTicketRepository = purchaseTicketRepository;
         this.userRepository = userRepository;
         this.ticketRepository = ticketRepository;
         this.modelMapper = modelMapper;
@@ -93,7 +92,7 @@ public class PurchaseService {
         // e PurchasedTicket precisa dele para persistir corretamente.
         for (PurchasedTicket pt : purchasedTickets) {
             pt.setPurchase(savedPurchase);
-            purchasedTicketRepository.save(pt);
+            PurchaseTicketRepository.save(pt);
         }
 
         return modelMapper.map(savedPurchase, PurchaseResponseDTO.class);
@@ -128,7 +127,7 @@ public class PurchaseService {
 
     @Transactional
     public PurchasedTicketResponseDTO redeemTicket(String uniqueCode) {
-        PurchasedTicket purchasedTicket = purchasedTicketRepository.findByUniqueCode(uniqueCode)
+        PurchasedTicket purchasedTicket = purchaseTicketRepository.findByUniqueCode(uniqueCode)
                 .orElseThrow(() -> new ResourceNotFoundException("Ingresso com código único não encontrado: " + uniqueCode));
 
         if (purchasedTicket.getRedeemed()) {
@@ -136,7 +135,7 @@ public class PurchaseService {
         }
 
         purchasedTicket.setRedeemed(true);
-        PurchasedTicket updatedTicket = purchasedTicketRepository.save(purchasedTicket);
+        PurchasedTicket updatedTicket = purchaseTicketRepository.save(purchasedTicket);
         return modelMapper.map(updatedTicket, PurchasedTicketResponseDTO.class);
     }
 
